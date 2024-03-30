@@ -1,28 +1,17 @@
-const DAYS = document.querySelector(".days");
-const HOURS = document.querySelector(".hours");
-const MINUTES = document.querySelector(".minutes");
-const SECONDS = document.querySelector(".seconds");
+const countdown = () => {
+  const endDate = new Date("March 30, 2024 00:00:00").getTime();
+  const now = new Date().getTime();
 
-let days = null;
-let hours = 24;
-let minutes = 60;
-let seconds = 2;
+  const difference = endDate - now;
 
-const getDate = () => {
-  if (seconds) {
-    console.log("getDate ~ seconds:", seconds);
-    SECONDS.textContent = seconds--;
-    console.log("getDate ~ seconds:", seconds);
-  } else if (seconds === 0) {
-    SECONDS.textContent = 0;
-    MINUTES.textContent = minutes--;
-  }
+  const seconds = 1000;
+  const minutes = seconds * 60;
+  const hours = minutes * 60;
+  const days = hours * 24;
+
+  const timeDays = Math.floor(difference / days);
+  const timeHours = Math.floor((difference % days) / hours);
+  console.log(timeDays);
 };
 
-getDate();
-
-// if (ten === 0) clearInterval()
-
-setInterval(() => {
-  getDate();
-}, 1000);
+countdown();
